@@ -1,4 +1,4 @@
-using Jam.Mouse;
+using Content.Scripts.Mouse;
 using UnityEngine;
 using Zenject;
 
@@ -6,12 +6,12 @@ namespace Jam.VirtualKeyboard.Keys
 {
     public class BackspaceKey : VirtualKey
     {
-        private MouseContext mouseContext;
+        private MousePointer _mousePointer;
 
         [Inject]
-        public BackspaceKey(MouseContext mouseContext)
+        public BackspaceKey(MousePointer mouseContext)
         {
-            this.mouseContext = mouseContext;
+            _mousePointer = mouseContext;
         }
 
         public override void ExecuteBoardAction()
@@ -21,14 +21,16 @@ namespace Jam.VirtualKeyboard.Keys
 
         public override void ExecuteKeyboardAction()
         {
-            if (mouseContext.SelectedEntityExist == false)
+            if (_mousePointer.SelectedEntityExist == false)
             {
                 return;
             }
 
-            GameObject.Destroy(mouseContext.SelectedEntity);
-
-            mouseContext.DeselectEntity();
+            if (_mousePointer.SelectedEntityExist)
+            {
+                GameObject.Destroy(_mousePointer.SelectedEntity);
+                _mousePointer.DeselectEntity();
+            }
         }
     }
 }

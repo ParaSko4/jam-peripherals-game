@@ -1,6 +1,6 @@
 using DG.Tweening;
-using Jam.Mouse;
 using System.Collections.Generic;
+using Content.Scripts.Mouse;
 using UnityEngine;
 using Zenject;
 
@@ -12,12 +12,12 @@ namespace Jam.VirtualKeyboard.Keys
         private const float SCALE_PERCENTAGE = 0.3f;
 
         private Dictionary<GameObject, CapsLockData> changableObjects = new();
-        private MouseContext mouseContext;
+        private MousePointer _mousePointer;
 
         [Inject]
-        public CapsLockKey(MouseContext mouseContext)
+        public CapsLockKey(MousePointer mouseContext)
         {
-            this.mouseContext = mouseContext;
+            _mousePointer = mouseContext;
         }
 
         public override void ExecuteBoardAction()
@@ -27,20 +27,20 @@ namespace Jam.VirtualKeyboard.Keys
 
         public override void ExecuteKeyboardAction()
         {
-            if (mouseContext.SelectedEntityExist == false)
+            if (_mousePointer.SelectedEntityExist == false)
             {
                 return;
             }
 
             CapsLockData capsLockData;
 
-            if (changableObjects.ContainsKey(mouseContext.SelectedEntity) == false)
+            if (changableObjects.ContainsKey(_mousePointer.SelectedEntity) == false)
             {
-                capsLockData = changableObjects[mouseContext.SelectedEntity] = new CapsLockData(mouseContext.SelectedEntity);
+                capsLockData = changableObjects[_mousePointer.SelectedEntity] = new CapsLockData(_mousePointer.SelectedEntity);
             }
             else
             {
-                capsLockData = changableObjects[mouseContext.SelectedEntity];
+                capsLockData = changableObjects[_mousePointer.SelectedEntity];
 
                 if (capsLockData.ScaleTween.IsActive())
                 {
@@ -51,7 +51,7 @@ namespace Jam.VirtualKeyboard.Keys
             var scale = capsLockData.ObjectInDefaultScaleState ?
                 capsLockData.StartScale * (1f - SCALE_PERCENTAGE) : capsLockData.StartScale;
 
-            var tween = mouseContext.SelectedEntity.transform.DOScale(scale, DURATION);
+            var tween = _mousePointer.SelectedEntity.transform.DOScale(scale, DURATION);
 
             capsLockData.SetScaleTween(tween);
             capsLockData.ObjectInDefaultScaleState = !capsLockData.ObjectInDefaultScaleState;

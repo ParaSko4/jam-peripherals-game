@@ -24,5 +24,15 @@ namespace Jam
 
             return null;
         }
+        
+        
+        public (bool succes, Vector3 position, GameObject pointedObject) CheckRaycastFromMousePosition(LayerMask mask = default)
+        {
+            var ray = camera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, mask))
+                return (succes: true, position: hitInfo.point, hitInfo.collider.gameObject);
+            else
+                return (succes: false, position: Vector3.zero, null);
+        }
     }
 }

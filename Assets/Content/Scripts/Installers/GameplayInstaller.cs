@@ -1,4 +1,4 @@
-using Jam.Mouse;
+using Content.Scripts.Mouse;
 using Jam.VirtualKeyboard;
 using Jam.VirtualKeyboard.Keys;
 using UnityEngine;
@@ -9,11 +9,14 @@ namespace Jam
     public class GameplayInstaller : MonoInstaller
     {
         [SerializeField] private Camera mainCamera;
+        [SerializeField] private MousePointer _mousePointer;
+        [SerializeField] private PointerConfig _pointerConfig;
 
         public override void InstallBindings()
         {
-            BindMouseService();
             BindCameraService();
+            BindPointerConfig();
+            BindMousePointer();
             BindVirtualKeyboardService();
         }
 
@@ -24,14 +27,24 @@ namespace Jam
                 .WithArguments(mainCamera)
                 .NonLazy();
         }
-
-        private void BindMouseService()
+        
+        private void BindMousePointer()
         {
-            Container.Bind<MouseContext>()
+            Container.Bind<MousePointer>()
+                .FromInstance(_mousePointer)
                 .AsSingle()
                 .NonLazy();
         }
 
+        private void BindPointerConfig()
+        {
+            Container.Bind<PointerConfig>()
+                .FromInstance(_pointerConfig)
+                .AsSingle()
+                .NonLazy();
+        }
+
+  
         private void BindVirtualKeyboardService()
         {
             Container.Bind<UpArrowKey>().AsSingle().NonLazy();
