@@ -65,6 +65,12 @@ namespace Content.Scripts.Mouse
                     BuildCancellationToken();
                     HoldCountDown(_selectedCtx.currentItem,_ctx);
                 }
+                else
+                {
+                    _selectedCtx.currentItem?.DisableSelection();
+                    _selectedCtx.currentItem = null;
+                }
+                  
             }
 
             if (Input.GetKeyUp(_cfg.PrimaryKey))
@@ -106,7 +112,6 @@ namespace Content.Scripts.Mouse
             _currentMask = groundOnly;
             _isHoldingItem = true;
             _selectedCtx.handleItem = selected;
-            _selectedCtx.handleItem.Select();
             _selectedCtx.handleItem.Handle();
         }
 

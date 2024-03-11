@@ -5,8 +5,7 @@ namespace Jam.VirtualKeyboard
 {
     public class VirtualKeyboardPresenter : MonoBehaviour
     {
-        [SerializeField] private LayerMask layerMask = default;
-
+  
         private VirtualKeyboardExecuter virtualKeyboardExecuter;
 
         [Inject]
