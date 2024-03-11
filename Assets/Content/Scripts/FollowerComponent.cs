@@ -39,7 +39,7 @@ namespace Content.Scripts
 
         private void RotateTowardsTarget()
         {
-            var dir = _currentTarget.position - transform.position;
+            var dir = new Vector3(_currentTarget.position.x, transform.position.y, _currentTarget.position.z)  - transform.position;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir.normalized), Time.fixedDeltaTime * 10f);
         }
         
