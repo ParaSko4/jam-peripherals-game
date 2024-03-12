@@ -1,8 +1,10 @@
+using System;
 using EasyButtons;
 using UnityEngine;
 
 namespace Content.Scripts
 {
+    [Obsolete]
     public class FollowerComponent : MonoBehaviour
     {
         [SerializeField] private float _maxSpeed = 75f;
