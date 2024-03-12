@@ -1,4 +1,4 @@
-using Jam.Mouse;
+using Content.Scripts.Mouse;
 using UnityEngine;
 using Zenject;
 
@@ -8,12 +8,12 @@ namespace Jam.VirtualKeyboard.Keys
     {
         private const float SPEED = -3f;
 
-        private MouseContext mouseContext;
+        private MousePointer _mousePointer;
 
         [Inject]
-        public LeftArrowKey(MouseContext mouseContext)
+        public LeftArrowKey(MousePointer mouseContext)
         {
-            this.mouseContext = mouseContext;
+            _mousePointer = mouseContext;
         }
 
         public override void ExecuteBoardAction()
@@ -23,7 +23,8 @@ namespace Jam.VirtualKeyboard.Keys
 
         public override void ExecuteKeyboardAction()
         {
-            mouseContext.SelectedEntity?.transform.AddZ(Time.deltaTime * SPEED);
+            if(_mousePointer.SelectedEntityExist)
+                _mousePointer.SelectedEntity.transform.AddZ(Time.deltaTime * SPEED);
         }
     }
 }
