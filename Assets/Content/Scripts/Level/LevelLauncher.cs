@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
+using Content.Scripts.Character;
 using EasyButtons;
 using Unity.Mathematics;
 using UnityEngine;
 
 namespace Content.Scripts.Level
 {
-
     public class LevelLauncher : MonoBehaviour
     {
-        public GameObject Player;
+        public CharacterEntity Player;
         public int restartLevelDelay;
         public LevelSetup _levelSetup;
         public int currentLevelIndex=0;
@@ -80,6 +80,5 @@ namespace Content.Scripts.Level
         private void OnEnable() => SubscribeOnCurrentLevel();
 
         private void OnDisable() => UnsubscribeFromCurrentLevel();
-
     }
 }

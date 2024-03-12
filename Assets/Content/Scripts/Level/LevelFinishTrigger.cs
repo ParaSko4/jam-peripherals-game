@@ -1,4 +1,5 @@
 using System;
+using Content.Scripts.Character;
 using UnityEditor;
 using UnityEngine;
 
@@ -14,8 +15,8 @@ namespace Content.Scripts.Level
         {
             if (Enabled)
             {
-                /*if(other.TryGetComponent<CharacterEntity>(out CharacterENtity player))
-               OnPlayerReachFinish?.Invoke();*/
+                if(other.TryGetComponent<CharacterEntity>(out CharacterEntity player))
+                    OnPlayerReachFinish?.Invoke();
             }
            
         }
