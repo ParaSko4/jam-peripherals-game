@@ -1,23 +1,17 @@
-using System;
 using UnityEngine;
-
 
 namespace Content.Scripts
 {
-    public class StickmanAnimator : MonoBehaviour
+    public class CharacterAnimator : MonoBehaviour
     {
         [SerializeField] private Animator _animator;
-        [SerializeField] private Rigidbody _rb;
+        [SerializeField] private CharacterController _characterController;
         private readonly int _speedHash = Animator.StringToHash("Speed");
-
-        private void Start()
-        {
-            _rb.velocity = Vector3.zero;
-        }
+        
 
         private void Update()
         {
-            _animator.SetFloat(_speedHash, _rb.velocity.magnitude);
+            _animator.SetFloat(_speedHash, _characterController.velocity.magnitude);
         }
 
         private void OnValidate()
