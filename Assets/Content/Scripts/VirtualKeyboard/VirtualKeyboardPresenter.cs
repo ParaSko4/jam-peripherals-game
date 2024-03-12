@@ -1,4 +1,3 @@
-using EasyButtons;
 using Jam.Mouse;
 using UnityEngine;
 using Zenject;
@@ -7,8 +6,7 @@ namespace Jam.VirtualKeyboard
 {
     public class VirtualKeyboardPresenter : MonoBehaviour
     {
-        [SerializeField] private LayerMask layerMask = default;
-        [SerializeField] private VirtualKeyboardKeys virtualKeyboardKey = default;
+        [SerializeField] private LayerMask entityLayer = default;
 
         private MouseContext mouseContext;
         private CameraService cameraService;
@@ -26,7 +24,7 @@ namespace Jam.VirtualKeyboard
         {
             if (Input.GetMouseButtonDown(0))
             {
-                var obj = cameraService.ThrowRaycastFromMousePosition(layerMask);
+                var obj = cameraService.ThrowRaycastFromMousePosition(entityLayer);
 
                 if (obj != null)
                 {
@@ -36,39 +34,33 @@ namespace Jam.VirtualKeyboard
 
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                virtualKeyboardExecuter.ExecuteKeyboardKey(VirtualKeyboardKeys.UpArrow);
+                virtualKeyboardExecuter.ExecuteKey(VirtualKeyboardKey.UpArrow);
             }
 
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                virtualKeyboardExecuter.ExecuteKeyboardKey(VirtualKeyboardKeys.DownArrow);
+                virtualKeyboardExecuter.ExecuteKey(VirtualKeyboardKey.DownArrow);
             }
 
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                virtualKeyboardExecuter.ExecuteKeyboardKey(VirtualKeyboardKeys.LeftArrow);
+                virtualKeyboardExecuter.ExecuteKey(VirtualKeyboardKey.LeftArrow);
             }
 
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                virtualKeyboardExecuter.ExecuteKeyboardKey(VirtualKeyboardKeys.RightArrow);
+                virtualKeyboardExecuter.ExecuteKey(VirtualKeyboardKey.RightArrow);
             }
 
             if (Input.GetKeyDown(KeyCode.CapsLock))
             {
-                virtualKeyboardExecuter.ExecuteKeyboardKey(VirtualKeyboardKeys.CapsLock);
+                virtualKeyboardExecuter.ExecuteKey(VirtualKeyboardKey.CapsLock);
             }
 
             if (Input.GetKeyDown(KeyCode.Backspace))
             {
-                virtualKeyboardExecuter.ExecuteKeyboardKey(VirtualKeyboardKeys.Backspace);
+                virtualKeyboardExecuter.ExecuteKey(VirtualKeyboardKey.Backspace);
             }
-        }
-
-        [Button]
-        public void Execute()
-        {
-            virtualKeyboardExecuter.ExecuteKeyboardKey(virtualKeyboardKey);
         }
     }
 }

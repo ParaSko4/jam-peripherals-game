@@ -1,5 +1,4 @@
 using Jam.Mouse;
-using Jam.UI.VirtualKeyboard;
 using Jam.VirtualKeyboard;
 using Jam.VirtualKeyboard.Keys;
 using UnityEngine;
@@ -7,12 +6,9 @@ using Zenject;
 
 namespace Jam
 {
-    public class GameplayInstaller : MonoInstaller
+    public class UIInstaller : MonoInstaller
     {
         [SerializeField] private Camera mainCamera;
-        [Space]
-        [SerializeField] private VirtualKeyPlaneHolder keyPlaneHolder;
-        [SerializeField] private VirtualKeyButtonHolder keyButtonHolder;
 
         public override void InstallBindings()
         {
@@ -38,9 +34,6 @@ namespace Jam
 
         private void BindVirtualKeyboardService()
         {
-            Container.Bind<VirtualKeyPlaneHolder>().FromInstance(keyPlaneHolder);
-            Container.Bind<VirtualKeyButtonHolder>().FromInstance(keyButtonHolder);
-
             Container.Bind<UpArrowKey>().AsSingle().NonLazy();
             Container.Bind<DownArrowKey>().AsSingle().NonLazy();
             Container.Bind<LeftArrowKey>().AsSingle().NonLazy();
@@ -51,7 +44,6 @@ namespace Jam
             Container.Bind<KeyFactory>().AsSingle().NonLazy();
 
             Container.Bind<VirtualKeyboardExecuter>().AsSingle().NonLazy();
-            Container.Bind<VirtualKeyboardTransitionHandler>().AsSingle().NonLazy();
         }
     }
 }

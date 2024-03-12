@@ -7,6 +7,10 @@ namespace Jam
     {
         private Camera camera;
 
+        private RaycastHit lastHit;
+
+        public RaycastHit LastHit => lastHit;
+
         [Inject]
         public CameraService(Camera camera)
         {
@@ -17,9 +21,9 @@ namespace Jam
         {
             var ray = camera.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out var hit, Mathf.Infinity, mask))
+            if (Physics.Raycast(ray, out lastHit, Mathf.Infinity, mask))
             {
-                return hit.transform.gameObject;
+                return lastHit.transform.gameObject;
             }
 
             return null;

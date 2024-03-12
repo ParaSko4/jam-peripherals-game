@@ -1,6 +1,6 @@
 namespace Jam.VirtualKeyboard
 {
-    public enum VirtualKeyboardKeys
+    public enum VirtualKeyboardKey
     {
         CapsLock,
         Space,

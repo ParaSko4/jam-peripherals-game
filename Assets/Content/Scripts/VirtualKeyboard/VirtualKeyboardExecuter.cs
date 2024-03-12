@@ -6,33 +6,28 @@ namespace Jam.VirtualKeyboard
 {
     public class VirtualKeyboardExecuter
     {
-        private Dictionary<VirtualKeyboardKeys, VirtualKey> virtualKeys = new();
+        private Dictionary<VirtualKeyboardKey, VirtualKey> virtualKeys = new();
 
         [Inject]
         public VirtualKeyboardExecuter(KeyFactory keyFactory)
         {
             virtualKeys = new()
             {
-                [VirtualKeyboardKeys.UpArrow] = keyFactory.CreateKey<UpArrowKey>(),
-                [VirtualKeyboardKeys.DownArrow] = keyFactory.CreateKey<DownArrowKey>(),
-                [VirtualKeyboardKeys.LeftArrow] = keyFactory.CreateKey<LeftArrowKey>(),
-                [VirtualKeyboardKeys.RightArrow] = keyFactory.CreateKey<RightArrowKey>(),
-                [VirtualKeyboardKeys.CapsLock] = keyFactory.CreateKey<CapsLockKey>(),
-                [VirtualKeyboardKeys.Backspace] = keyFactory.CreateKey<BackspaceKey>(),
+                [VirtualKeyboardKey.UpArrow] = keyFactory.CreateKey<UpArrowKey>(),
+                [VirtualKeyboardKey.DownArrow] = keyFactory.CreateKey<DownArrowKey>(),
+                [VirtualKeyboardKey.LeftArrow] = keyFactory.CreateKey<LeftArrowKey>(),
+                [VirtualKeyboardKey.RightArrow] = keyFactory.CreateKey<RightArrowKey>(),
+                [VirtualKeyboardKey.CapsLock] = keyFactory.CreateKey<CapsLockKey>(),
+                [VirtualKeyboardKey.Backspace] = keyFactory.CreateKey<BackspaceKey>(),
             };
         }
 
-        public void ExecuteKeyboardKey(VirtualKeyboardKeys virtualKeyboardKey)
+        public void ExecuteKey(VirtualKeyboardKey virtualKeyboardKey)
         {
-            virtualKeys[virtualKeyboardKey].ExecuteKeyboardAction();
+            virtualKeys[virtualKeyboardKey].Execute();
         }
 
-        public void ExecuteBoardKey(VirtualKeyboardKeys virtualKeyboardKey)
-        {
-            virtualKeys[virtualKeyboardKey].ExecuteBoardAction();
-        }
-
-        public VirtualKey GetKey(VirtualKeyboardKeys virtualKeyboardKey)
+        public VirtualKey GetKey(VirtualKeyboardKey virtualKeyboardKey)
         {
             if (virtualKeys.ContainsKey(virtualKeyboardKey))
             {
@@ -40,6 +35,14 @@ namespace Jam.VirtualKeyboard
             }
 
             return null;
+        }
+
+        public void ResetKeys()
+        {
+            foreach (var value in virtualKeys.Values)
+            {
+                value.IsKeyBindedToPlayer = true;
+            }
         }
     }
 }
