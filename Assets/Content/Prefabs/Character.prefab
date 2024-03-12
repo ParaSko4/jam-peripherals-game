@@ -902,6 +902,7 @@ GameObject:
   - component: {fileID: 5826448991411432796}
   - component: {fileID: 1319170549194571373}
   - component: {fileID: 7446570715679202264}
+  - component: {fileID: 5522889393766344591}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -978,6 +979,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09573c64e24ba0b46a7e8cfa64f47ae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _outlineComponent: {fileID: 0}
+--- !u!114 &5522889393766344591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5318333439922031488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6674229fd0a61840b3f4ccf78f7b7a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 96787130425006680}
+  _outlineMatOriginal: {fileID: 2100000, guid: bb7f605e4c9af004e8fc6335278cbdcf, type: 2}
+  _currentMats:
+  - {fileID: -2310514774154243031, guid: 7ca33f3db4dc86442b47596452a40bed, type: 3}
 --- !u!1 &5324927173070066105
 GameObject:
   m_ObjectHideFlags: 0
