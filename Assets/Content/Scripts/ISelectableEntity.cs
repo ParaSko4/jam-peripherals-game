@@ -5,14 +5,6 @@ namespace Content.Scripts
 {
     public interface ISelectableEntity
     {
-        public void EnableHighlight()
-        {
-        }
-
-        public void DisableHighlight()
-        {
-        }
-
         public void Select()
         {
         }

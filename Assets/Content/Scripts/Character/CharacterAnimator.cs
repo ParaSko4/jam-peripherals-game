@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Content.Scripts
+namespace Content.Scripts.Character
 {
     public class CharacterAnimator : MonoBehaviour
     {

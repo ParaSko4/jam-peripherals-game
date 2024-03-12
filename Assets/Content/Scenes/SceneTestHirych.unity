@@ -273,7 +273,8 @@ GameObject:
   - component: {fileID: 575679691}
   - component: {fileID: 575679696}
   - component: {fileID: 575679695}
-  - component: {fileID: 575679694}
+  - component: {fileID: 575679698}
+  - component: {fileID: 575679697}
   m_Layer: 0
   m_Name: Stickman
   m_TagString: Untagged
@@ -347,22 +348,6 @@ Transform:
   - {fileID: 1356918318}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &575679694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 575679689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98ce38d097538d94fad8aa35d91e35bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxSpeed: 75
-  _stoppingDistance: 1.5
-  _slowDownDistance: 4
-  _selfRb: {fileID: 575679695}
 --- !u!54 &575679695
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -411,6 +396,34 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &575679697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575679689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09573c64e24ba0b46a7e8cfa64f47ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _outlineComponent: {fileID: 575679698}
+--- !u!114 &575679698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575679689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6674229fd0a61840b3f4ccf78f7b7a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 0}
+  _outlineMatOriginal: {fileID: 0}
+  _currentMats: []
 --- !u!1 &720445295
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,6 +553,7 @@ GameObject:
   - component: {fileID: 1234742606}
   - component: {fileID: 1234742605}
   - component: {fileID: 1234742604}
+  - component: {fileID: 1234742607}
   m_Layer: 0
   m_Name: Target
   m_TagString: Untagged
@@ -612,6 +626,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1234742607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234742602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6674229fd0a61840b3f4ccf78f7b7a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 1234742604}
+  _outlineMatOriginal: {fileID: 2100000, guid: bb7f605e4c9af004e8fc6335278cbdcf, type: 2}
+  _currentMats:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
 --- !u!1 &1356918317
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,6 +759,7 @@ GameObject:
   - component: {fileID: 1387970695}
   - component: {fileID: 1387970694}
   - component: {fileID: 1387970693}
+  - component: {fileID: 1387970697}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -822,6 +853,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1387970697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387970692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6674229fd0a61840b3f4ccf78f7b7a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 1387970694}
+  _outlineMatOriginal: {fileID: 2100000, guid: bb7f605e4c9af004e8fc6335278cbdcf, type: 2}
+  _currentMats:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
 --- !u!1 &1539843690
 GameObject:
   m_ObjectHideFlags: 0
