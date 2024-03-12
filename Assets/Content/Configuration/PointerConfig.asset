@@ -17,6 +17,6 @@ MonoBehaviour:
   HandleDelay: 100
   CursorViewData:
   - State: 1
-    View: {fileID: 2800000, guid: 6335938a58301c24bb93ee2bc1f00b0e, type: 3}
+    View: {fileID: 2800000, guid: 11f83d98bb98b82439e560884b376784, type: 3}
   - State: 2
-    View: {fileID: 2800000, guid: a7dce2080415e30428c214f2a6e422cc, type: 3}
+    View: {fileID: 2800000, guid: b6f39ca68a7e5eb478eeadc243fda1d4, type: 3}
