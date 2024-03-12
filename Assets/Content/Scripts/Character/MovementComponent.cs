@@ -13,10 +13,10 @@ namespace Content.Scripts.Character
         
         public void Move()
         {
-            if (_currentInput!=Vector3.zero)
-            {
+            // if (_currentInput!=Vector3.zero)
+            // {
                 _characterController.Move(_currentInput * _speed *Time.deltaTime);
-            }
+            // }
         }
         
         private void Update()
