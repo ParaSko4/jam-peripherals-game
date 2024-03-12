@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4676501952914516578}
   - component: {fileID: 7422691906916916904}
   - component: {fileID: 9044515058006126116}
+  - component: {fileID: -5150845044710167870}
+  - component: {fileID: -6080476927955183390}
   m_Layer: 0
   m_Name: toon_office_tile_wall_white
   m_TagString: Untagged
@@ -106,3 +108,32 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7653945157421287560, guid: 661d685e026c547f0a6c2f2d0c859fe7, type: 3}
+--- !u!114 &-5150845044710167870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8935790949739315069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9016b0348f9518148b5a0538b8ce3c90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _outlineComponent: {fileID: -6080476927955183390}
+--- !u!114 &-6080476927955183390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8935790949739315069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6674229fd0a61840b3f4ccf78f7b7a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 7422691906916916904}
+  _outlineMatOriginal: {fileID: 2100000, guid: 44b4af71e848e9f40bae37a63748acd6, type: 2}
+  _currentMats:
+  - {fileID: 2100000, guid: 9a1a075fbf6932d4cb5c274389a2507f, type: 2}
