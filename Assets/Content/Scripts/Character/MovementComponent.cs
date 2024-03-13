@@ -1,20 +1,28 @@
 using System;
-using UnityEditor;
+using System.Threading;
 using UnityEngine;
+using Cysharp.Threading;
+using Cysharp.Threading.Tasks;
 
 namespace Content.Scripts.Character
 {
     public class MovementComponent : MonoBehaviour
     {
-        [SerializeField] private CharacterController _characterController;
+        [field: SerializeField] public CharacterController CharacterController { get; private set; }
+        [SerializeField] private CharacterAnimator _characterAnimator;
+        [Header("MovementSettings")]
         [SerializeField] private float _speed =5f;
         [SerializeField] private float _rotationSpeed = 360f;
+        [Header("JumpSettings")]
         [SerializeField] private float _customGravity = -20f;
         [SerializeField] private float _jumpHeight = 5f;
         [SerializeField] private float _jumpDistanceFactor = 2f;
+
+        private CancellationTokenSource _jumpCts;
         
         private Vector3 _currentVelocity;
         private Vector3 _currentInput;
+        private bool _inJumpSequence;
         
         
         public void SetMovementInput()
@@ -27,25 +35,25 @@ namespace Content.Scripts.Character
         
         private void Update()
         {
-            SetMovementInput();
-            
-            if (_characterController.isGrounded)
+            if (CharacterController.isGrounded && _inJumpSequence==false)
             { 
-                _currentVelocity = new Vector3(_currentInput.x, _currentVelocity.y, _currentInput.z);
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     Jump();
+                    return;
                 }
-            }
-
+                
+                SetMovementInput();
+                _currentVelocity = new Vector3(_currentInput.x, 0f, _currentInput.z);
+                Look();
+            } 
             ApplyGravity();
             Move();
-            Look();
         }
 
         private void Move()
         {
-            _characterController.Move(_currentVelocity * Time.deltaTime);
+            CharacterController.Move(_currentVelocity * Time.deltaTime * _speed);
         }
         
         private void Look()
@@ -70,13 +78,39 @@ namespace Content.Scripts.Character
 
         private void Jump()
         {
-            _currentVelocity *= _jumpDistanceFactor;
-            _currentVelocity.y = _jumpHeight;
+            _inJumpSequence = true;
+            ResetVelocity();
+            void SetJumpedVelocity()
+            {
+                _currentVelocity = transform.forward* _jumpDistanceFactor;
+                _currentVelocity.y = _jumpHeight;
+            }
+            
+            _characterAnimator.StartJumpAnimation(SetJumpedVelocity, CheckLanding);
+        }
+
+        private async UniTask<bool> CheckLanding()
+        {
+            _jumpCts = new();
+            await UniTask.WaitUntil(() => CharacterController.isGrounded, cancellationToken:_jumpCts.Token);
+            _inJumpSequence = false;
+            return true;
         }
 
         private void OnValidate()
         {
-            _characterController ??= GetComponent<CharacterController>();
+            CharacterController ??= GetComponent<CharacterController>();
+        }
+
+        private void ResetVelocity()
+        {
+            _currentVelocity = Vector3.zero;
+            _currentInput = Vector3.zero;
+        }
+
+        private void OnDisable()
+        {
+            _jumpCts?.Cancel();
         }
     }
 }
