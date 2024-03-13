@@ -11,12 +11,17 @@ namespace Content.Scripts.Character
 
         private void Update()
         {
-            _animator.SetFloat(_speedHash, _characterController.velocity.magnitude);
+            _animator.SetFloat(_speedHash, GroundedMagnitude(_characterController.velocity));
         }
 
         private void OnValidate()
         {
             _animator ??= GetComponent<Animator>();
+        }
+
+        private float GroundedMagnitude(Vector3 original)
+        {
+            return Mathf.Sqrt(original.x * original.x + original.z * original.z);
         }
     }
 }

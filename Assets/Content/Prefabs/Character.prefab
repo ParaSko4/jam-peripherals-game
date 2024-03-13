@@ -967,6 +967,8 @@ MonoBehaviour:
   _characterController: {fileID: 5826448991411432796}
   _speed: 1.5
   _rotationSpeed: 10
+  _customGravity: -10
+  _jumpHeight: 6
 --- !u!114 &7446570715679202264
 MonoBehaviour:
   m_ObjectHideFlags: 0
